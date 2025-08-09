@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chaitanya Mahesh Mane - Data Analyst & Python Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fdfaf6;
+            color: #333;
+        }
+        .section-title {
+            color: #0d9488; /* Muted Teal */
+        }
+        .skill-tag {
+            background-color: #e0e7ff;
+            color: #3730a3;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        .project-card {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .btn {
+            transition: background-color 0.3s ease;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 50vh;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-200">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold text-gray-800">Chaitanya Mahesh Mane</div>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#about" class="text-gray-600 hover:text-teal-600">About</a>
+                <a href="#skills" class="text-gray-600 hover:text-teal-600">Skills</a>
+                <a href="#projects" class="text-gray-600 hover:text-teal-600">Projects</a>
+                <a href="#contact" class="bg-teal-600 text-white px-4 py-2 rounded-full hover:bg-teal-700 btn">Contact</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4 border-t border-gray-200">
+            <a href="#about" class="block py-2 text-gray-600 hover:text-teal-600">About</a>
+            <a href="#skills" class="block py-2 text-gray-600 hover:text-teal-600">Skills</a>
+            <a href="#projects" class="block py-2 text-gray-600 hover:text-teal-600">Projects</a>
+            <a href="#contact" class="block mt-2 bg-teal-600 text-white text-center px-4 py-2 rounded-full hover:bg-teal-700 btn">Contact</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <!-- Hero Section -->
+        <section class="text-center py-16 md:py-24">
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-800 leading-tight">Data Analyst & Python Developer</h1>
+            <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Transforming raw data into actionable insights and building efficient solutions with Python.</p>
+            <div class="mt-8 flex justify-center space-x-4">
+                <a href="https://www.linkedin.com/in/chaitanya-mane-2ba034276" target="_blank" class="text-gray-500 hover:text-teal-600">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
+                </a>
+                <a href="https://github.com/chaitanyyy" target="_blank" class="text-gray-500 hover:text-teal-600">
+                     <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.378.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"/></svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-16 md:py-20">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold section-title mb-4">About Me</h2>
+                <p class="text-lg text-gray-700 leading-relaxed">
+                    I'm a detail-oriented and motivated Data Analyst with a strong foundation in Python development and data-driven problem-solving. As a quick learner currently pursuing a Bachelor's in Data Science, I'm passionate about uncovering the stories hidden within data and building tools that make information accessible and useful. I'm eager to leverage my analytical skills to contribute to challenging projects in the tech industry.
+                </p>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-16 md:py-20 bg-white rounded-2xl">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl font-bold section-title mb-12 text-center">My Technical Skills</h2>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="mb-8">
+                            <h3 class="text-xl font-semibold text-gray-700 mb-4">Languages & Databases</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">SQL</span>
+                            </div>
+                        </div>
+                        <div class="mb-8">
+                            <h3 class="text-xl font-semibold text-gray-700 mb-4">Data Science & Analysis</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-tag">Pandas</span>
+                                <span class="skill-tag">NumPy</span>
+                                <span class="skill-tag">Matplotlib</span>
+                                <span class="skill-tag">Seaborn</span>
+                                <span class="skill-tag">Scikit-learn</span>
+                                <span class="skill-tag">Data Cleaning</span>
+                                <span class="skill-tag">EDA</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-700 mb-4">Tools & Technologies</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-tag">Git</span>
+                                <span class="skill-tag">GitHub</span>
+                                <span class="skill-tag">Jupyter Notebooks</span>
+                                <span class="skill-tag">VS Code</span>
+                                <span class="skill-tag">Microsoft Excel</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="skillsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-16 md:py-20">
+            <h2 class="text-3xl font-bold section-title mb-12 text-center">Projects</h2>
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                
+                <div class="project-card rounded-lg shadow-md overflow-hidden p-6 flex flex-col">
+                    <h3 class="text-xl font-bold text-gray-800">Customer Segmentation Analysis</h3>
+                    <p class="text-gray-600 mt-2 flex-grow">Developed a Python script to clean, preprocess, and analyze customer records. Performed EDA to identify key purchasing behaviors and used clustering algorithms to segment customers for targeted marketing strategies.</p>
+                    <div class="mt-4">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">Seaborn</span>
+                    </div>
+                    <div class="mt-6">
+                        <a href="https://github.com/chaitanyyy" target="_blank" class="text-teal-600 font-semibold hover:underline">View on GitHub &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="project-card rounded-lg shadow-md overflow-hidden p-6 flex flex-col">
+                    <h3 class="text-xl font-bold text-gray-800">Interactive Sales Dashboard</h3>
+                    <p class="text-gray-600 mt-2 flex-grow">Built a dynamic dashboard to visualize sales data. The project involved creating data pipelines, performing calculations for KPIs, and presenting trends over time through interactive charts and tables.</p>
+                    <div class="mt-4">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Plotly</span>
+                        <span class="skill-tag">SQL</span>
+                    </div>
+                    <div class="mt-6">
+                        <a href="https://github.com/chaitanyyy" target="_blank" class="text-teal-600 font-semibold hover:underline">View on GitHub &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Add more project cards here -->
+
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="py-16 md:py-20 bg-white rounded-2xl">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold section-title mb-4">Education</h2>
+                <h3 class="text-2xl font-semibold text-gray-800">Bachelor in Data Science</h3>
+                <p class="text-lg text-gray-600 mt-2">Vivekanand Global University, Jaipur, Rajasthan</p>
+                <p class="text-md text-gray-500 mt-1">Expected Graduation: May 2027</p>
+                <p class="text-md text-gray-600 mt-4 max-w-2xl mx-auto">
+                    <strong>Relevant Coursework:</strong> Introduction to Data Structures, Statistical Modeling, Machine Learning Fundamentals, Database Management.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Contact Footer -->
+    <footer id="contact" class="bg-gray-800 text-white mt-20">
+        <div class="container mx-auto px-6 py-12 text-center">
+            <h2 class="text-3xl font-bold">Let's Connect!</h2>
+            <p class="mt-3 max-w-xl mx-auto">I'm currently seeking new opportunities and would love to hear from you. Feel free to reach out via call or email.</p>
+            <div class="mt-6 flex justify-center items-center space-x-4">
+                <a href="tel:9309424030" class="bg-teal-600 text-white px-6 py-3 rounded-full hover:bg-teal-700 btn text-lg font-semibold">Call Me</a>
+                <a href="mailto:Chaitanyyyy@proton.me" class="text-teal-300 hover:text-white">Chaitanyyyy@proton.me</a>
+            </div>
+            <div class="mt-10 border-t border-gray-700 pt-6 text-sm text-gray-400">
+                <p>&copy; <span id="year"></span> Chaitanya Mahesh Mane. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Set current year in footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // Skills Chart
+            const ctx = document.getElementById('skillsChart').getContext('2d');
+            
+            // Helper function for long labels
+            function formatLabel(str, maxwidth){
+                const sections = [];
+                const words = str.split(" ");
+                let temp = "";
+
+                words.forEach((item, index) => {
+                    if (temp.length > 0) {
+                        const newtemp = temp + " " + item;
+                        if (newtemp.length > maxwidth) {
+                            sections.push(temp);
+                            temp = item;
+                        } else {
+                            temp = newtemp;
+                        }
+                    } else {
+                        temp = item;
+                    }
+                    if (index === words.length - 1) {
+                        sections.push(temp);
+                    }
+                });
+
+                return sections;
+            }
+
+            const skillsChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Python', 'SQL', 'Pandas/NumPy', 'Data Visualization', 'Machine Learning', 'Git/GitHub'],
+                    datasets: [{
+                        label: 'Proficiency',
+                        data: [90, 80, 95, 85, 75, 80],
+                        backgroundColor: 'rgba(13, 148, 136, 0.6)',
+                        borderColor: 'rgba(13, 148, 136, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `Proficiency: ${context.raw}%`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + "%"
+                                },
+                                color: '#4b5563'
+                            },
+                            grid: {
+                                color: '#e5e7eb'
+                            }
+                        },
+                        y: {
+                           ticks: {
+                                color: '#1f2937',
+                                font: {
+                                    weight: '500'
+                                }
+                           },
+                           grid: {
+                                display: false
+                           }
+                        }
+                    }
+                }
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                     // Close mobile menu on link click
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
